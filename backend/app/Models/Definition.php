@@ -7,5 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Definition extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  protected $fillable = [
+    'word_id',
+    'meaning',
+    'part_of_speech',
+    'example_sentence'
+  ];
+
+  public function word()
+  {
+    return $this->belongsTo(Word::class);
+  }
 }

@@ -7,5 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Synonym extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  protected $fillable = [
+    'word_id',
+    'similars',
+  ];
+
+  public function word()
+  {
+    return $this->belongsTo(Word::class);
+  }
 }

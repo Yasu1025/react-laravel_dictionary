@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\DefinitionController;
 use App\Http\Controllers\admin\WordController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +22,7 @@ Route::post('admin/auth', [AdminController::class, 'auth'])->name('admin.auth');
 Route::prefix('admin')->middleware('admin')->group(function () {
   Route::get('dashboard', [AdminController::class, 'index'])->name('admin.index');
   Route::post('logout', [AdminController::class, 'logout'])->name('admin.logout');
-  //Words
+  // Words
   Route::resource('words', WordController::class, [
     'names' => [
       'index' => 'admin.words.index',
@@ -30,6 +31,17 @@ Route::prefix('admin')->middleware('admin')->group(function () {
       'edit' => 'admin.words.edit',
       'update' => 'admin.words.update',
       'destroy' => 'admin.words.destroy'
+    ]
+  ]);
+  // Definition
+  Route::resource('definitions', DefinitionController::class, [
+    'names' => [
+      'index' => 'admin.definitions.index',
+      'create' => 'admin.definitions.create',
+      'store' => 'admin.definitions.store',
+      'edit' => 'admin.definitions.edit',
+      'update' => 'admin.definitions.update',
+      'destroy' => 'admin.definitions.destroy'
     ]
   ]);
 });

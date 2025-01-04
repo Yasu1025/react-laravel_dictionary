@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\DefinitionController;
+use App\Http\Controllers\admin\SynonymController;
 use App\Http\Controllers\admin\WordController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,17 @@ Route::prefix('admin')->middleware('admin')->group(function () {
       'edit' => 'admin.definitions.edit',
       'update' => 'admin.definitions.update',
       'destroy' => 'admin.definitions.destroy'
+    ]
+  ]);
+  // Synonym
+  Route::resource('synonyms', SynonymController::class, [
+    'names' => [
+      'index' => 'admin.synonyms.index',
+      'create' => 'admin.synonyms.create',
+      'store' => 'admin.synonyms.store',
+      'edit' => 'admin.synonyms.edit',
+      'update' => 'admin.synonyms.update',
+      'destroy' => 'admin.synonyms.destroy'
     ]
   ]);
 });

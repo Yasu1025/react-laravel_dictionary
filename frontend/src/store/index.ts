@@ -1,7 +1,16 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import wordDetailReducer from "./slices/wordDetailSlice";
-import { persistReducer, persistStore } from "redux-persist";
+import {
+  persistReducer,
+  persistStore,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 
 // Create the root reducer
 const rootReducer = combineReducers({
@@ -18,6 +27,12 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // Create store and persistor
 const store = configureStore({
   reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 const persistor = persistStore(store);
 

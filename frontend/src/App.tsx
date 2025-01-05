@@ -1,5 +1,16 @@
+import { BrowserRouter } from "react-router-dom";
+import { AppRoutes } from "./routes";
+import { ToastContainer } from "react-toastify";
+
 function App() {
-  return <div className="text-orange-500">Hello world!!!</div>;
+  return (
+    <div className="container">
+      <ToastContainer position="top-right" />
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
